@@ -60,7 +60,7 @@ public class CharacterServiceImpl implements CharacterService {
         return characterRepository.saveCharacter(character);
     }
 
-    //TODO: implement the method
+    //TODO: Task 1 - Implement the method
 
     /**
      * Retrieves the heaviest character on a specified planet.
@@ -72,7 +72,7 @@ public class CharacterServiceImpl implements CharacterService {
         return null;
     }
 
-    //TODO: fix the method
+    //TODO: Task 2 - Fix the method
     /**
      * Retrieves the heaviest character of each species.
      *

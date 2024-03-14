@@ -53,4 +53,6 @@ public class CharacterController {
     public List<Character> getHeaviestCharacterByEachSpecie() {
         return characterService.getHeaviestCharacterByEachSpecie();
     }
+
+    //TODO: Task 3 - Implement the PUT method
 }
