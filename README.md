@@ -24,7 +24,7 @@ Implement getHeaviestCharacterOnPlanet method in CharacterService class. This me
 ## Task 2
 There is a bug in getHeaviestCharacterBySpecie method in CharacterService. Find and fix it.
 ## Task 3
-Implement the PUT method in the CharacterController class. This method should update the character with the given id.
+Implement the PUT method in the CharacterController class. It should receive Character as an input argument from RequestBody and should update it in the DB.
 ## Task 4 (Bonus task)
 Add a new table to the application called "starship" and create a controller for it. The table should have the following columns:
 - id (primary key)

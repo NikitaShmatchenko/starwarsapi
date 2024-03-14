@@ -8,6 +8,10 @@ public class CelestialBody extends BaseEntity {
     private String name;
     private int diameter;
 
+    public void rotate() {
+        System.out.println("Celestial body is rotating.");
+    }
+
     public void describe() {
         System.out.println("The description of a celestial body.");
     }
@@ -19,6 +23,7 @@ public class CelestialBody extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+
     public int getDiameter() {
         return diameter;
     }
