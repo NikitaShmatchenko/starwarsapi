@@ -74,10 +74,10 @@ public class CharacterServiceImpl implements CharacterService {
         return false;
     }
 
-    // TODO: Implement the method
+    // TODO: Task 1. Implement the method
     /**
      * Retrieves the character by ID and checks if it belongs to the Wookiee species
-     * and is older than 60 years.
+     * and their age is greater than or equal to 60 years.
      *
      * @param id The ID of the character.
      * @return true if the character is a Wookiee older than 60 years, false otherwise.
@@ -86,7 +86,7 @@ public class CharacterServiceImpl implements CharacterService {
         return false;
     }
 
-    // TODO: Implement the method
+    // TODO: Task 2. Implement the method
     /**
      * Retrieves the character by ID and checks if it is taller than the average
      * height of the species it belongs to.
@@ -98,17 +98,17 @@ public class CharacterServiceImpl implements CharacterService {
         return false;
     }
 
-    // TODO: Implement the method
+    // TODO: Task 3. Implement the method
     /**
      * Calculates the average weight based on the weight of all characters.
      *
      * @return The average weight of all characters.
      */
-    public int getAverageWeightOfAllCharacters() {
+    public Integer getAverageWeightOfAllCharacters() {
         return 0;
     }
 
-    // TODO: Fix the method
+    // TODO: Task 4. Find and fix the bug
     /**
      * Retrieves the heaviest character of each species.
      *
@@ -136,7 +136,7 @@ public class CharacterServiceImpl implements CharacterService {
                 .toList();
     }
 
-    // TODO: Implement the method and add an endpoint with the proper status codes (404)
+    // TODO: Task 6. Implement the method and add an endpoint with the proper status codes (404)
     /**
      * Retrieves the heaviest character on a specified planet.
      *

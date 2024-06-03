@@ -5,6 +5,7 @@ import com.example.starwarsapi.persistence.entity.Planet;
 import com.example.starwarsapi.persistence.entity.Specie;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,16 @@ public class CharacterRepositoryImpl implements CharacterRepository {
 
     @Override
     public Character saveCharacter(Character character) {
-        characters.put(character.getId(), character);
+        int key;
+        if (character.getId() == null) {
+            key = characters.keySet().stream()
+                    .max(Comparator.comparingInt(Integer::intValue)).map(i -> i + 1)
+                    .orElse(0);
+            character.setId(key);
+        } else {
+            key = character.getId();
+        }
+        characters.put(key, character);
         return character;
     }
 

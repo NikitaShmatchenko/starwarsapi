@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/characters")
+@RequestMapping("/starwars-api/v1/characters")
 public class CharacterController {
 
     private final CharacterService characterService;
@@ -28,7 +28,7 @@ public class CharacterController {
     @GetMapping("/{id}")
     public ResponseEntity<Character> getCharacterById(@PathVariable Integer id) {
         Character character = characterService.getCharacterById(id);
-        if(character == null) {
+        if (character == null) {
             return ResponseEntity.status(404).body(null);
         }
         return ResponseEntity.status(200).body(character);
@@ -39,7 +39,7 @@ public class CharacterController {
         return characterService.getAllCharacters();
     }
 
-    //TODO add age validation
+    //TODO Task 5. Add age validation
     @PostMapping
     public Character createCharacter(@RequestBody Character character) {
         return characterService.createCharacter(character);
@@ -57,16 +57,22 @@ public class CharacterController {
     @GetMapping("/isCharacterOldWookie/{id}")
     public ResponseEntity<Boolean> isCharacterAnOldWookie(@PathVariable Long id) {
         Boolean isCharacterAnOldWookie = characterService.isCharacterOldWookie(id);
-        if(isCharacterAnOldWookie == null) {
+        if (isCharacterAnOldWookie == null) {
             return ResponseEntity.status(404).body(null);
         }
-            return ResponseEntity.status(200).body(isCharacterAnOldWookie);
+        return ResponseEntity.status(200).body(isCharacterAnOldWookie);
+    }
+
+    @GetMapping("/averageWeight")
+    public ResponseEntity<Integer> isCharacterAnOldWookie() {
+        Integer isCharacterAnOldWookie = characterService.getAverageWeightOfAllCharacters();
+        return ResponseEntity.status(200).body(isCharacterAnOldWookie);
     }
 
     @GetMapping("/isCharacterTallerThanAverageHeightOfSpecie/{id}")
     public ResponseEntity<Boolean> isCharacterTallerThanAverageHeightOfSpecie(@PathVariable Long id) {
         Boolean isCharacterTaller = characterService.isCharacterTallerThanAverageHeightOfSpecie(id);
-        if(isCharacterTaller == null) {
+        if (isCharacterTaller == null) {
             return ResponseEntity.status(404).body(null);
         }
         return ResponseEntity.status(200).body(isCharacterTaller);
