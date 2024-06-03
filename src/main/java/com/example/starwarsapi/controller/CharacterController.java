@@ -54,8 +54,8 @@ public class CharacterController {
         return ResponseEntity.status(200).body(null);
     }
 
-    @GetMapping("/{id}/isCharacterOldWookie")
-    public ResponseEntity<Boolean> isCharacterAnOldWookie(@PathVariable Long id) {
+    @GetMapping("/{id}/is-character-old-wookie")
+    public ResponseEntity<Boolean> isCharacterAnOldWookie(@PathVariable Integer id) {
         Boolean isCharacterAnOldWookie = characterService.isCharacterOldWookie(id);
         if (isCharacterAnOldWookie == null) {
             return ResponseEntity.status(404).body(null);
@@ -63,14 +63,14 @@ public class CharacterController {
         return ResponseEntity.status(200).body(isCharacterAnOldWookie);
     }
 
-    @GetMapping("/averageWeight")
-    public ResponseEntity<Integer> isCharacterAnOldWookie() {
+    @GetMapping("/average-weight")
+    public ResponseEntity<Integer> getAverageWeight() {
         Integer isCharacterAnOldWookie = characterService.getAverageWeightOfAllCharacters();
         return ResponseEntity.status(200).body(isCharacterAnOldWookie);
     }
 
-    @GetMapping("/{id}/isCharacterTallerThanAverageHeightOfSpecie")
-    public ResponseEntity<Boolean> isCharacterTallerThanAverageHeightOfSpecie(@PathVariable Long id) {
+    @GetMapping("/{id}/is-character-taller-than-average-height-of-specie")
+    public ResponseEntity<Boolean> isCharacterTallerThanAverageHeightOfSpecie(@PathVariable Integer id) {
         Boolean isCharacterTaller = characterService.isCharacterTallerThanAverageHeightOfSpecie(id);
         if (isCharacterTaller == null) {
             return ResponseEntity.status(404).body(null);
@@ -78,7 +78,7 @@ public class CharacterController {
         return ResponseEntity.status(200).body(isCharacterTaller);
     }
 
-    @GetMapping("/heaviestBySpecie")
+    @GetMapping("/heaviest-by-specie")
     public ResponseEntity<List<Character>> getHeaviestCharacterByEachSpecie() {
         return ResponseEntity.status(200).body(characterService.getHeaviestCharacterByEachSpecie());
     }

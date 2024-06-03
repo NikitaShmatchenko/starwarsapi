@@ -82,8 +82,8 @@ public class CharacterServiceImpl implements CharacterService {
      * @param id The ID of the character.
      * @return true if the character is a Wookiee older than 60 years, false otherwise.
      */
-    public Boolean isCharacterOldWookie(Long id) {
-        return false;
+    public Boolean isCharacterOldWookie(Integer id) {
+        return null;
     }
 
     // TODO: Task 2. Implement the method
@@ -94,7 +94,7 @@ public class CharacterServiceImpl implements CharacterService {
      * @param id The ID of the character.
      * @return true if the character is taller than the average height of its species, false otherwise.
      */
-    public Boolean isCharacterTallerThanAverageHeightOfSpecie(Long id) {
+    public Boolean isCharacterTallerThanAverageHeightOfSpecie(Integer id) {
         return false;
     }
 
