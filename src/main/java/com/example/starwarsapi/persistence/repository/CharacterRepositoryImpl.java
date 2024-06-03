@@ -30,15 +30,13 @@ public class CharacterRepositoryImpl implements CharacterRepository {
 
     @Override
     public Character saveCharacter(Character character) {
-        int key;
-        if (character.getId() == null) {
-            key = characters.keySet().stream()
+        int key = Optional.ofNullable(character.getId()).orElseGet(() -> {
+            int newKey = characters.keySet().stream()
                     .max(Comparator.comparingInt(Integer::intValue)).map(i -> i + 1)
                     .orElse(0);
-            character.setId(key);
-        } else {
-            key = character.getId();
-        }
+            character.setId(newKey);
+            return newKey;
+        });
         characters.put(key, character);
         return character;
     }
