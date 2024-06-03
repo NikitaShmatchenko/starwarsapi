@@ -3,16 +3,16 @@ package com.example.starwarsapi.persistence.entity;
 public class Character {
     private Integer id;
     private int height;
-    private int mass;
+    private int weight;
     private int age;
     private Planet planet;
     private Specie specie;
     private String name;
 
-    public Character(Integer id, int height, int mass, int age, Planet planet, Specie specie, String name) {
+    public Character(Integer id, int height, int weight, int age, Planet planet, Specie specie, String name) {
         this.id = id;
         this.height = height;
-        this.mass = mass;
+        this.weight = weight;
         this.planet = planet;
         this.specie = specie;
         this.name = name;
@@ -46,12 +46,12 @@ public class Character {
         this.height = height;
     }
 
-    public int getMass() {
-        return mass;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setMass(int mass) {
-        this.mass = mass;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public Planet getPlanet() {

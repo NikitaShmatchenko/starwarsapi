@@ -19,7 +19,7 @@ There is a bug in the ```getHeaviestCharacterByEachSpecie``` method in the Chara
 
 ## Task 5
 Add parameter validation to the ```createCharacter``` method in the CharacterController class.  
-It should check that the age of the character being created is more than 0 years old and less than 1000 years old.
+It should check that the age of the character being created is more than 0 years old and less than 1000 years old and return BAD_REQUEST status if the validation fails.
 
 ## Task 6
 Implement the ```getHeaviestCharacterOnPlanet``` method in the CharacterServiceImpl class.  

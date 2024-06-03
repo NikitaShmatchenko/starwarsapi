@@ -64,17 +64,12 @@ public class CharacterServiceImpl implements CharacterService {
     // TODO: Implement the method
     // Live coding
     // Show not found
-    public Character getCharacterByName(String name){
+    public Character getCharacterByName(String name) {
         return null;
     }
 
-    // TODO: Implement the method
-    // Live coding
-    public boolean isPlanetInhabited(String planetName) {
-        return false;
-    }
-
     // TODO: Task 1. Implement the method
+
     /**
      * Retrieves the character by ID and checks if it belongs to the Wookiee species
      * and their age is greater than or equal to 60 years.
@@ -87,7 +82,8 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     // TODO: Task 2. Implement the method
-    /**
+
+    /*ResponseEntity*
      * Retrieves the character by ID and checks if it is taller than the average
      * height of the species it belongs to.
      *
@@ -99,16 +95,18 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     // TODO: Task 3. Implement the method
+
     /**
      * Calculates the average weight based on the weight of all characters.
      *
      * @return The average weight of all characters.
      */
-    public Integer getAverageWeightOfAllCharacters() {
-        return 0;
+    public Double getAverageWeightOfAllCharacters() {
+        return 0.0;
     }
 
     // TODO: Task 4. Find and fix the bug
+
     /**
      * Retrieves the heaviest character of each species.
      *
@@ -125,7 +123,7 @@ public class CharacterServiceImpl implements CharacterService {
                 heaviestCharacterBySpecie.put(specieName, character);
             } else {
                 Character currentHeaviest = heaviestCharacterBySpecie.get(specieName);
-                if (currentHeaviest.getMass() < character.getMass()) {
+                if (currentHeaviest.getWeight() < character.getWeight()) {
                     heaviestCharacterBySpecie.put(specieName, character);
                 }
             }
@@ -136,7 +134,8 @@ public class CharacterServiceImpl implements CharacterService {
                 .toList();
     }
 
-    // TODO: Task 6. Implement the method and add an endpoint with the proper status codes (404)
+    // TODO: Task 6. Implement the method and add an endpoint with the proper status codes (NOT_FOUND)
+
     /**
      * Retrieves the heaviest character on a specified planet.
      *

@@ -35,14 +35,14 @@ public class CharacterController {
     }
 
     @GetMapping
-    public List<Character> getAllCharacters() {
-        return characterService.getAllCharacters();
+    public ResponseEntity<List<Character>> getAllCharacters() {
+        return ResponseEntity.status(200).body(characterService.getAllCharacters());
     }
 
-    //TODO Task 5. Add age validation
+    //TODO Task 5. Add age validation. The method should return BAD_REQUEST status if the validation fails.
     @PostMapping
-    public Character createCharacter(@RequestBody Character character) {
-        return characterService.createCharacter(character);
+    public ResponseEntity<Character> createCharacter(@RequestBody Character character) {
+        return ResponseEntity.status(200).body(characterService.createCharacter(character));
     }
 
     @DeleteMapping("/{id}")
@@ -64,8 +64,8 @@ public class CharacterController {
     }
 
     @GetMapping("/average-weight")
-    public ResponseEntity<Integer> getAverageWeight() {
-        Integer isCharacterAnOldWookie = characterService.getAverageWeightOfAllCharacters();
+    public ResponseEntity<Double> getAverageWeight() {
+        Double isCharacterAnOldWookie = characterService.getAverageWeightOfAllCharacters();
         return ResponseEntity.status(200).body(isCharacterAnOldWookie);
     }
 

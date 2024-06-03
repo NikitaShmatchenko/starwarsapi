@@ -16,7 +16,7 @@ public interface CharacterService {
     Boolean isCharacterOldWookie(Integer id);
 
     Boolean isCharacterTallerThanAverageHeightOfSpecie(Integer id);
-    Integer getAverageWeightOfAllCharacters();
+    Double getAverageWeightOfAllCharacters();
     Character getHeaviestCharacterOnPlanet(String planet);
 
     List<Character> getHeaviestCharacterByEachSpecie();
