@@ -33,7 +33,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
         int key = Optional.ofNullable(character.getId()).orElseGet(() -> {
             int newKey = characters.keySet().stream()
                     .max(Comparator.comparingInt(Integer::intValue)).map(i -> i + 1)
-                    .orElse(0);
+                    .orElse(1);
             character.setId(newKey);
             return newKey;
         });
