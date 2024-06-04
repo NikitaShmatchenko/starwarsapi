@@ -7,6 +7,9 @@ import java.util.List;
 public interface CharacterService {
 
     Character getCharacterById(Integer id);
+
+    Character getCharacterByName(String name);
+
     boolean deleteCharacterById(Integer id);
 
     List<Character> getAllCharacters();
@@ -16,7 +19,9 @@ public interface CharacterService {
     Boolean isCharacterOldWookie(Integer id);
 
     Boolean isCharacterTallerThanAverageHeightOfSpecie(Integer id);
+
     Double getAverageWeightOfAllCharacters();
+
     Character getHeaviestCharacterOnPlanet(String planet);
 
     List<Character> getHeaviestCharacterByEachSpecie();
