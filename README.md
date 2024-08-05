@@ -25,3 +25,15 @@ It should check that the age of the character being created is more than 0 years
 Implement the ```getHeaviestCharacterOnPlanet``` method in the CharacterServiceImpl class.  
 The method should return the heaviest character on the specified planet. If there is no such planet, it should return null.  
 Additionally, you need to create an endpoint (a method in the controller) that will invoke this method and return the proper status code based on the return value of the method.
+
+## Task 7
+Add exception handling to the service layer. (create and delete methods)
+
+Example: https://www.baeldung.com/java-exceptions
+
+## Task 8
+Add a global exception handler for an Exception class to handle all unhandled exceptions. 
+
+Example: https://www.baeldung.com/exception-handling-for-rest-with-spring
+
+
