@@ -1,6 +1,8 @@
 package com.example.starwarsapi.persistence.repository;
 
 import com.example.starwarsapi.persistence.entity.Character;
+import com.example.starwarsapi.persistence.exception.ResourceAlreadyExistsException;
+import com.example.starwarsapi.persistence.exception.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +13,9 @@ public interface CharacterRepository {
 
     List<Character> getAllCharacters();
 
-    Character saveCharacter(Character character);
+    Character updateCharacter(Character character);
 
-    boolean deleteCharacterById(Integer id);
+    Character createCharacter(Character character) throws ResourceAlreadyExistsException;
+
+    void deleteCharacterById(Integer id) throws ResourceNotFoundException;
 }

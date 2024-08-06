@@ -2,6 +2,8 @@ package com.example.starwarsapi.service;
 
 import com.example.starwarsapi.persistence.entity.Character;
 import com.example.starwarsapi.persistence.entity.Specie;
+import com.example.starwarsapi.persistence.exception.ResourceAlreadyExistsException;
+import com.example.starwarsapi.persistence.exception.ResourceNotFoundException;
 import com.example.starwarsapi.persistence.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,10 +36,9 @@ public class CharacterServiceImpl implements CharacterService {
      * Deletes a character by their ID.
      *
      * @param id The ID of the character to delete.
-     * @return true if the character was successfully deleted, false otherwise.
      */
-    public boolean deleteCharacterById(Integer id) {
-        return characterRepository.deleteCharacterById(id);
+    public void deleteCharacterById(Integer id) throws ResourceNotFoundException {
+        characterRepository.deleteCharacterById(id);
     }
 
     /**
@@ -52,13 +53,24 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * Creates a new character.
+     * Updates the passed character. If the character doesn't have
+     * an id then a new character will be created.
      *
      * @param character The Character to be saved.
      * @return The saved Character.
      */
-    public Character createCharacter(Character character) {
-        return characterRepository.saveCharacter(character);
+    public Character updateCharacter(Character character) {
+        return characterRepository.updateCharacter(character);
+    }
+
+    /**
+     * Creates a new character.
+     *
+     * @param character The Character to be created.
+     * @return The created character.
+     */
+    public Character createCharacter(Character character) throws ResourceAlreadyExistsException {
+        return characterRepository.createCharacter(character);
     }
 
     // TODO: Implement the method
@@ -75,7 +87,7 @@ public class CharacterServiceImpl implements CharacterService {
      * and their age is greater than or equal to 60 years.
      *
      * @param id The ID of the character.
-     * @return true if the character is a Wookiee older than 60 years, false otherwise.
+     * @return true if the character meets the condition, false otherwise.
      */
     public Boolean isCharacterOldWookie(Integer id) {
         return null;

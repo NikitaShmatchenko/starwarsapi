@@ -3,6 +3,8 @@ package com.example.starwarsapi.persistence.repository;
 import com.example.starwarsapi.persistence.entity.Character;
 import com.example.starwarsapi.persistence.entity.Planet;
 import com.example.starwarsapi.persistence.entity.Specie;
+import com.example.starwarsapi.persistence.exception.ResourceAlreadyExistsException;
+import com.example.starwarsapi.persistence.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -29,22 +31,37 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     }
 
     @Override
-    public Character saveCharacter(Character character) {
-        int key = Optional.ofNullable(character.getId()).orElseGet(() -> {
-            int newKey = characters.keySet().stream()
-                    .max(Comparator.comparingInt(Integer::intValue)).map(i -> i + 1)
-                    .orElse(1);
-            character.setId(newKey);
-            return newKey;
-        });
+    public Character updateCharacter(Character character) {
+        int key = generateId(character);
+        character.setId(key);
         characters.put(key, character);
         return character;
     }
 
     @Override
-    public boolean deleteCharacterById(Integer id) {
-        Character removedCharacter = characters.remove(id);
-        return removedCharacter != null;
+    public Character createCharacter(Character character) throws ResourceAlreadyExistsException {
+        Integer key = generateId(character);
+        Character persistedCharacter = characters.get(key);
+        if (persistedCharacter == null) {
+            character.setId(key);
+            characters.put(key, character);
+            return character;
+        }
+        throw new ResourceAlreadyExistsException();
+    }
+
+    @Override
+    public void deleteCharacterById(Integer id) throws ResourceNotFoundException {
+        Optional.ofNullable(characters.remove(id))
+                .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    private Integer generateId(Character character) {
+        return Optional.ofNullable(character.getId())
+                .orElseGet(() -> characters.keySet().stream()
+                        .max(Comparator.comparingInt(Integer::intValue))
+                        .map(i -> i + 1)
+                        .orElse(1));
     }
 
     private static Map<Integer, Character> getMockedCharacters() {

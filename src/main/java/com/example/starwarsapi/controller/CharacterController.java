@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,17 +41,21 @@ public class CharacterController {
     }
 
     //TODO Task 5. Add age validation. The method should return BAD_REQUEST status if the validation fails.
+    //TODO Task 7. Add exception handling.
     @PostMapping
     public ResponseEntity<Character> createCharacter(@RequestBody Character character) {
         return ResponseEntity.status(200).body(characterService.createCharacter(character));
     }
 
+    @PutMapping
+    public ResponseEntity<Character> updateCharacter(@RequestBody Character character) {
+        return ResponseEntity.status(200).body(characterService.updateCharacter(character));
+    }
+
+    //TODO Task 7. Add exception handling.
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCharacter(@PathVariable Integer id) {
-        boolean characterDeleted = characterService.deleteCharacterById(id);
-        if (!characterDeleted) {
-            return ResponseEntity.status(404).body(null);
-        }
+        characterService.deleteCharacterById(id);
         return ResponseEntity.status(200).body(null);
     }
 
@@ -65,11 +70,11 @@ public class CharacterController {
 
     @GetMapping("/average-weight")
     public ResponseEntity<Double> getAverageWeight() {
-        Double isCharacterAnOldWookie = characterService.getAverageWeightOfAllCharacters();
-        return ResponseEntity.status(200).body(isCharacterAnOldWookie);
+        Double averageWeight = characterService.getAverageWeightOfAllCharacters();
+        return ResponseEntity.status(200).body(averageWeight);
     }
 
-    @GetMapping("/{id}/is-character-taller-than-average-height-of-specie")
+    @GetMapping("/{id}/is-taller-than-average-specie")
     public ResponseEntity<Boolean> isCharacterTallerThanAverageHeightOfSpecie(@PathVariable Integer id) {
         Boolean isCharacterTaller = characterService.isCharacterTallerThanAverageHeightOfSpecie(id);
         if (isCharacterTaller == null) {
