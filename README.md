@@ -26,7 +26,7 @@ The method should return the heaviest character on the specified planet. If ther
 Additionally, you need to create an endpoint (a method in the controller) that will invoke this method and return the proper status code based on the return value of the method.
 
 ## Task 7
-The `createCharacter` and `deleteCharacterById` service methods can possibly throw errors. Add exception handling to the controller layer for these two methods and return proper status codes for both successful and failed operations.
+The `createCharacter` and `deleteCharacterById` service methods can possibly throw errors. Add exception handling to the controller class for these two methods and return proper status codes for both successful and failed operations.
 
 Examples:
 https://docs.oracle.com/javase/tutorial/essential/exceptions/index.html
