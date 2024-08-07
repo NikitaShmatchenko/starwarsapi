@@ -1,8 +1,8 @@
 package com.example.starwarsapi.service;
 
 import com.example.starwarsapi.persistence.entity.Character;
-import com.example.starwarsapi.persistence.exception.ResourceAlreadyExistsException;
-import com.example.starwarsapi.persistence.exception.ResourceNotFoundException;
+import com.example.starwarsapi.persistence.exception.CharacterAlreadyExistsException;
+import com.example.starwarsapi.persistence.exception.CharacterNotFoundException;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ public interface CharacterService {
 
     Character getCharacterByName(String name);
 
-    void deleteCharacterById(Integer id) throws ResourceNotFoundException;
+    void deleteCharacterById(Integer id) throws CharacterNotFoundException;
 
     List<Character> getAllCharacters();
 
-    Character createCharacter(Character character) throws ResourceAlreadyExistsException;
+    Character createCharacter(Character character) throws CharacterAlreadyExistsException;
 
     Character updateCharacter(Character character);
 

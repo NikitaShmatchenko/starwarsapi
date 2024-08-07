@@ -3,8 +3,8 @@ package com.example.starwarsapi.persistence.repository;
 import com.example.starwarsapi.persistence.entity.Character;
 import com.example.starwarsapi.persistence.entity.Planet;
 import com.example.starwarsapi.persistence.entity.Specie;
-import com.example.starwarsapi.persistence.exception.ResourceAlreadyExistsException;
-import com.example.starwarsapi.persistence.exception.ResourceNotFoundException;
+import com.example.starwarsapi.persistence.exception.CharacterAlreadyExistsException;
+import com.example.starwarsapi.persistence.exception.CharacterNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -39,21 +39,24 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     }
 
     @Override
-    public Character createCharacter(Character character) throws ResourceAlreadyExistsException {
+    public Character createCharacter(Character character) throws CharacterAlreadyExistsException {
         Integer key = generateId(character);
         Character persistedCharacter = characters.get(key);
-        if (persistedCharacter == null) {
-            character.setId(key);
-            characters.put(key, character);
-            return character;
+        if (persistedCharacter != null) {
+            throw new CharacterAlreadyExistsException("A character with such id already exists. [id: %s]".formatted(key));
         }
-        throw new ResourceAlreadyExistsException();
+        if (isCharacterNameNotUnique(character.getName())) {
+            throw new CharacterAlreadyExistsException("A character with such name already exists. [name: %s]".formatted(character.getName()));
+        }
+        character.setId(key);
+        characters.put(key, character);
+        return character;
     }
 
     @Override
-    public void deleteCharacterById(Integer id) throws ResourceNotFoundException {
+    public void deleteCharacterById(Integer id) throws CharacterNotFoundException {
         Optional.ofNullable(characters.remove(id))
-                .orElseThrow(ResourceNotFoundException::new);
+                .orElseThrow(() -> new CharacterNotFoundException(id));
     }
 
     private Integer generateId(Character character) {
@@ -62,6 +65,11 @@ public class CharacterRepositoryImpl implements CharacterRepository {
                         .max(Comparator.comparingInt(Integer::intValue))
                         .map(i -> i + 1)
                         .orElse(1));
+    }
+
+    private boolean isCharacterNameNotUnique(String name) {
+        return characters.values().stream()
+                .anyMatch(c -> c.getName().equals(name));
     }
 
     private static Map<Integer, Character> getMockedCharacters() {

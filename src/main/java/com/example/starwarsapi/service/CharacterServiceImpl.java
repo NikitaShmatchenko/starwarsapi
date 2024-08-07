@@ -2,8 +2,8 @@ package com.example.starwarsapi.service;
 
 import com.example.starwarsapi.persistence.entity.Character;
 import com.example.starwarsapi.persistence.entity.Specie;
-import com.example.starwarsapi.persistence.exception.ResourceAlreadyExistsException;
-import com.example.starwarsapi.persistence.exception.ResourceNotFoundException;
+import com.example.starwarsapi.persistence.exception.CharacterAlreadyExistsException;
+import com.example.starwarsapi.persistence.exception.CharacterNotFoundException;
 import com.example.starwarsapi.persistence.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class CharacterServiceImpl implements CharacterService {
      *
      * @param id The ID of the character to delete.
      */
-    public void deleteCharacterById(Integer id) throws ResourceNotFoundException {
+    public void deleteCharacterById(Integer id) throws CharacterNotFoundException {
         characterRepository.deleteCharacterById(id);
     }
 
@@ -69,7 +69,7 @@ public class CharacterServiceImpl implements CharacterService {
      * @param character The Character to be created.
      * @return The created character.
      */
-    public Character createCharacter(Character character) throws ResourceAlreadyExistsException {
+    public Character createCharacter(Character character) throws CharacterAlreadyExistsException {
         return characterRepository.createCharacter(character);
     }
 
