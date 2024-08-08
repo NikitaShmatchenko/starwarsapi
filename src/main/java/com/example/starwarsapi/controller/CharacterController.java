@@ -40,7 +40,7 @@ public class CharacterController {
         return ResponseEntity.status(200).body(characterService.getAllCharacters());
     }
 
-    //TODO Task 5. Add age validation. The method should return BAD_REQUEST status if the validation fails.
+    //TODO Task 5. Add age validation. The method should check that the age of the character being created is more than 0 years old and less than or equal to 1000 years old and return BAD_REQUEST status if the validation fails.
     //TODO Task 7. Add exception handling.
     @PostMapping
     public ResponseEntity<Character> createCharacter(@RequestBody Character character) {

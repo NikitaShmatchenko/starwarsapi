@@ -146,7 +146,8 @@ public class CharacterServiceImpl implements CharacterService {
                 .toList();
     }
 
-    // TODO: Task 6. Implement the method and add an endpoint with the proper status codes (NOT_FOUND)
+    // TODO: Task 6. Implement the method. It should return the heaviest character on the specified planet. If there is no such planet, it should return null.
+    // TODO: Additionally, you need to create an endpoint (a method in the controller) that will invoke this method and return the proper status code based on the return value of the method.
 
     /**
      * Retrieves the heaviest character on a specified planet.
